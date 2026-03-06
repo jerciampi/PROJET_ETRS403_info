@@ -37,7 +37,7 @@ while True:
         pico_led.off()
         print('ByBye')
         sys.exit()
-    response = requests.get("URL") /* Remplacer URL */
+    response = requests.get("http://localhost/Projet/test_liaison_rs_pico.php")
     response_code = response.status_code
     response_content = response.content
     print('Response code: ', response_code)
