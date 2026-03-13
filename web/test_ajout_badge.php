@@ -14,7 +14,7 @@
   </p>
 
 <?php 
-$codeBadge = $_POST['res']  
+$codeBadge = $_GET['res']  
 # $nom_badge = $_POST['nom_badge']
 
 $dbh = new PDO('mysql:dbname=projet_etrs403_info;host=localhost;charset=utf8', 'root', '');
