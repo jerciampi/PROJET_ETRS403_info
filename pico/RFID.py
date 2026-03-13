@@ -18,7 +18,7 @@ rc522 = MFRC522(spi_id=0,sck=6,miso=4,mosi=7,cs=5,rst=3)
 print("")
 print("Placez une carte RFID pres du lecteur.")
 print("")
-
+res = 0
 while True:
 
     (stat, tag_type) = rc522.request(rc522.REQIDL)
@@ -28,4 +28,8 @@ while True:
         
     if stat == rc522.OK:
         print("Numero : %s" % uidToString(uid))
+        res = "Numero : %s" % uidToString(uid)
         sleep(1)
+
+url = 'http://localhost//git/test2_git_etrs403/PROJET_ETRS403_info/web/test_ajout_badge.php'
+response = requests.post(url, data=res)
