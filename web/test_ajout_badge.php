@@ -17,7 +17,13 @@
 $codeBadge = $_GET['res']  
 # $nom_badge = $_POST['nom_badge']
 
-$dbh = new PDO('mysql:dbname=test;host=localhost;charset=utf8', 'root', '');
+try {
+  $dbh = new PDO('mysql:dbname=test;host=localhost;charset=utf8', 'root', '');
+  // Permet d'afficher les erreurs SQL par la suite
+  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+} catch (PDOException $e) {
+  die('Erreur de connexion à la base de données : ' . $e->getMessage());
+}
 
 $result = $dbh->query("SELECT * FROM codebadge1);
 
