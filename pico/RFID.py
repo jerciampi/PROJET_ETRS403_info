@@ -61,6 +61,5 @@ while True:
         res = "%s" % uidToString(uid)
         sleep(1)
 
-url = 'http://193.48.125.182/Projet/PROJET_ETRS403_info/web/test_ajout_badge.php?res='+res
-requests.get(url)
-
+        url = 'http://193.48.125.182/Projet/PROJET_ETRS403_info/web/test_ajout_badge.php?res='+res
+        requests.get(url)

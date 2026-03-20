@@ -1,46 +1,41 @@
 <!doctype html>
 <html lang="fr">
 
-<head>
-  <meta charset="utf-8">
-  <title>Backend : ajouter un badge - requête</title>
-  <link rel="stylesheet" href="projet.css">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <title>Backend : ajouter un badge - requête</title>
+    <link rel="stylesheet" href="projet.css">
+  </head>
 
-<body>
-<p>
-    <label for="nom_badge">description :</label>
-  <input type="text" name="nom_badge"> 
-  </p>
+  <body>
+    <p>
+        <label for="nom_badge">description :</label>
+      <input type="text" name="nom_badge"> 
+    </p>
 
-<?php 
-$codeBadge = $_GET['res']  
-# $nom_badge = $_POST['nom_badge']
+      <?php 
+      $codeBadge = $_GET['res'];
+      # $nom_badge = $_POST['nom_badge']
 
-try {
-  $dbh = new PDO('mysql:dbname=test;host=localhost;charset=utf8', 'root', '');
-  // Permet d'afficher les erreurs SQL par la suite
-  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-} catch (PDOException $e) {
-  die('Erreur de connexion à la base de données : ' . $e->getMessage());
-}
+      $dbh = new PDO('mysql:dbname=test;host=localhost;charset=utf8', 'root', '');
 
-$result = $dbh->query("SELECT * FROM codebadge1);
+      $result = $dbh->query("SELECT * FROM codebadge1");
 
-$danslaBase = false;
+      $danslaBase = false;
 
-while ($row = $result->fetch(PDO::FETCH_ASSOC) && $danslaBase == False) {
-  if ($row['code_badge'] == $codeBadge) {
-    $danslaBase = True;
-    }
+      while (($row = $result->fetch(PDO::FETCH_ASSOC))&& $danslaBase == False) {
+        if ($row['code_badge'] == $codeBadge) {
+          $danslaBase = true;
+          }
+        }
 
-if ($danslaBase == false) {
-  $res = $dbh->query("INSERT INTO codebadge1(code_badge) VALUES('$codeBadge'));
+      if ($danslaBase == false) {
+        $res = $dbh->query("INSERT INTO codebadge1(code_badge) VALUES('$codeBadge')");
+      }
 
+      ?>
 
-?>
-
-</body>
+  </body>
 
 
-</html>
+</html> 
