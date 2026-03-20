@@ -49,7 +49,6 @@ rc522 = MFRC522(spi_id=0,sck=6,miso=4,mosi=7,cs=5,rst=3)
 print("")
 print("Placez une carte RFID pres du lecteur.")
 print("")
-res = {}
 while True:
 
     (stat, tag_type) = rc522.request(rc522.REQIDL)
@@ -59,9 +58,9 @@ while True:
         
     if stat == rc522.OK:
         print("Numero : %s" % uidToString(uid))
-        res['codeBadge'] = "%s" % uidToString(uid)
+        res = "%s" % uidToString(uid)
         sleep(1)
 
-url = 'http://193.48.125.182/Projet/PROJET_ETRS403_info/web/recup_donnees.php?res'
-response = requests.get(url, data=res)
+url = 'http://193.48.125.182/Projet/PROJET_ETRS403_info/web/test_ajout_badge.php?res='+res
+requests.get(url)
 
