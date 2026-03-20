@@ -17,7 +17,7 @@
 $codeBadge = $_GET['res']  
 # $nom_badge = $_POST['nom_badge']
 
-$dbh = new PDO('mysql:dbname=projet_etrs403_info;host=localhost;charset=utf8', 'root', '');
+$dbh = new PDO('mysql:dbname=projet_etrs403_infoo;host=localhost;charset=utf8', 'root', '');
 
 $result = $dbh->query("SELECT * FROM codebadge);
 
@@ -32,3 +32,9 @@ if ($danslaBase == false) {
   $res = $dbh->query("INSERT INTO codebadge(code_badge) VALUES('$codeBadge'));
 
 
+?>
+
+</body>
+
+
+</html>
