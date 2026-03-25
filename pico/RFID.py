@@ -61,8 +61,8 @@ while True:
         res = "%s" % uidToString(uid)
         sleep(1)
 
-        url = 'http://193.48.125.182/Projet/PROJET_ETRS403_info/web/test_ajout_badge.php?res='+res
+        url = 'http://193.48.125.182/Projet/PROJET_ETRS403_info/web/passage_badge.php?res='+res
         response = requests.get(url)
-        page = response.content()
+        page = response.content
         var = page[-14:-10]
         print (var)
