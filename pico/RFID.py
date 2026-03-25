@@ -62,4 +62,7 @@ while True:
         sleep(1)
 
         url = 'http://193.48.125.182/Projet/PROJET_ETRS403_info/web/test_ajout_badge.php?res='+res
-        requests.get(url)
+        response = requests.get(url)
+        page = response.content()
+        var = page[-14:-10]
+        print (var)

@@ -21,7 +21,10 @@ while (($row = $result->fetch(PDO::FETCH_ASSOC))&& $est_dans_la_base == False) {
       }
     }
 
+
 $query = $dbh->query("INSERT INTO passage(heure_passage, date, code_badge_scan, valide) 
 VALUES ('$heure_actuelle', '$date_actuelle', '$codebadge', '$est_dans_la_base')");
 
+echo $est_dans_la_base;
 ?>
+</html>
