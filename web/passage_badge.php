@@ -13,11 +13,13 @@ $est_dans_la_base = false;
 
 $codebadge = $_GET['res'];
 $heure_actuelle = date('H:i:s');
-$date_actuelle = date('d/m/Y');
+$date_actuelle = date('Y-m-d');
 $result = $dbh->query("SELECT * FROM codebadge1");
-if ($row['code_badge'] == $codebadge) {
-    $est_dans_la_base = true;
-}
+while (($row = $result->fetch(PDO::FETCH_ASSOC))&& $est_dans_la_base == False) {
+    if ($row['code_badge'] == $codebadge) {
+      $est_dans_la_base = true;
+      }
+    }
 
 $query = $dbh->query("INSERT INTO passage(heure_passage, date, code_badge_scan, valide) 
 VALUES ('$heure_actuelle', '$date_actuelle', '$codebadge', '$est_dans_la_base')");
