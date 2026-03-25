@@ -22,13 +22,15 @@
   
   <p><label for="nom_badge">Badge a supprimer :</label>
   <select name="nom_badge">
+  <option value=''>Choisissez le badge</option>
     <?php
     $dbh = new PDO('mysql:dbname=test;host=localhost;charset=utf8', 'root', '');
   
     $result = $dbh->query("SELECT * FROM codebadge1");
     
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        echo '<option value="' . $row['nom_badge'] . '">' . $row['code_badge'] . " " . $row['nom_badge'] . '</option>';
+        $nombadge = $row['nom_badge'];
+        echo '<option value="' . $row['nom_badge'] . '">' . $row['code_badge'] . ' (appartenant à ' . $nombadge . ')</option>';
     }
     ?>
 </select>

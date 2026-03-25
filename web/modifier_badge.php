@@ -1,6 +1,9 @@
+<!doctype html>
+<html lang="fr">
+
 <head>
   <meta charset="utf-8">
-  <title>Backend : ajouter une balade</title>
+  <title>Backend : modifier un badge</title>
   <link rel="stylesheet" href="">
 </head>
 
@@ -13,30 +16,23 @@
 <body>
 <?php 
 
-$nom_balade = $_POST['nom_balade'];
-$description = $_POST['description'];
-$lieux_depart = $_POST['lieux_depart'];
-$date_real = $_POST['date_real'];
-$trace_gpx = $_POST['trace_gpx'];
-$distance = $_POST['distance'];
-$altitude_max = $_POST['altitude_max'];
-$denivele = $_POST['denivele'];
-$duree = $_POST['duree'];
-$photos_sortie = $_POST['photos_sortie'];
-$id_type_sortie = $_POST['id_type_sortie'];
-$id_chien = $_POST['id_chien'];
-$id_difficulte = $_POST['id_difficulte'];
+$dbh = new PDO('mysql:dbname=test;host=localhost;charset=utf8', 'root', '');
 
-$dbh = new PDO('mysql:dbname=ciampij;host=localhost;charset=utf8', 'root', '');
+$id_badge = $_POST['id_balade'];
+$result_actuel = $dbh->query("SELECT * FROM codebadge1 WHERE id_badge='$id_badge'");
+$badge = $result_actuel->fetch(PDO::FETCH_ASSOC);
 
 
+$code_badge = ($_POST['code_badge'] != '') ? $code_badge=$_POST['code_badge'] : $badge['code_badge'];
+$nom_badge = ($_POST['nom_badge'] != '') ? $code_badge=$_POST['nom_badge'] : $badge['nom_badge'];
 
-$result = $dbh->query("UPDATE balade SET nom_balade='$nom_balade', description= '$description', lieux_depart='$lieux_depart', date_real='$date_real', trace_gpx='$trace_gpx', distance='$distance', altitude_max='$altitude_max', denivele='$denivele', duree='$duree', photos_sortie='$photos_sortie', id_type_sortie='$id_type_sortie', id_chien='$id_chien', id_difficulte='$id_difficulte')
-WHERE id_balade='$id_balade'");
+$result = $dbh->query("UPDATE codebadge1 SET code_badge='$code_badge', nom_badge='$nom_badge' 
+    WHERE id_badge='$id_badge'");
 
 echo "<p>\n";
-echo "La balade a bien été rajoutée dans la base  : <br>\n";
+echo "Le badge a bien été modifié dans la base  : <br>\n";
 echo '</p>'
 ?>
 
 </body>
+</html>

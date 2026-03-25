@@ -29,6 +29,14 @@
 	<input type="text" name="nom_badge">
   </p>
 
+  <label for="admin"> Droits administrateur :</label>
+  <input type = checkbox name = "admin" value="1"> 
+</p>
+
+<p>
+	<input type="submit" value="Ajouter le badge">
+  </p>
+
  
 
 </form>
