@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Backend : Modifier une balade - formulaire</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="">
 </head>
 
 
