@@ -23,6 +23,9 @@ password = '88E4VB1YQBI15TM4UCK9KP1LWQ'
 red = Pin(1, Pin.OUT)
 green = Pin(0, Pin.OUT)
 
+green.value(0)
+red.value(0)
+            
 def connect():
     #Connect to WLAN
     wlan = network.WLAN(network.STA_IF)
@@ -66,18 +69,41 @@ while True:
         res = "%s" % uidToString(uid)
         sleep(1)
 
-        url = 'http://193.48.125.182/Projet/RFID/PROJET_ETRS403_info/web/passage_badge.php?res='+res
+        url = 'http://193.48.125.182/Projet/RFID/web/passage_badge.php?res='+res
         response = requests.get(url)
         page = response.text
-        var = page[-24:-20]
-        print (var)
-        if var=="true":
-            print("Card ID: "+ str(res)+" PASS: Green Light Activated")
-            green.value(1)
-            sleep(2)
-            green.value(0)
-        else:
+        valide = page[-24:-20]
+        admin = page[-25]
+        print (valide)
+        print (admin)
+        if valide=="alse":
             print("Card ID: "+ str(res)+" STOP: Red Light Activated")
             red.value(1)
             sleep(2)
             red.value(0)
+        elif admin=="1":
+            print("Card ID: "+ str(res)+" ADMIN MODE: Scan A New Card")
+            red.value(1)
+            green.value(1)
+            admin_timer=0
+            new_card = False
+            while (admin_timer<15) and not new_card:
+                (stat, tag_type) = rc522.request(rc522.REQIDL)
+                if stat == rc522.OK:
+                    (stat, uid) = rc522.SelectTagSN()
+                if stat == rc522.OK:
+                    print("Nouvelle carte : %s" % uidToString(uid))
+                    new_id = "%s" % uidToString(uid)
+                    new_card = True
+                    url = 'http://193.48.125.182/Projet/RFID/web/test_ajout_badge.php?res='+new_id
+                    response = requests.get(url)
+                    sleep(1)
+                sleep(1)
+                admin_timer+=1
+            green.value(0)
+            red.value(0)
+        elif valide=="true":
+            print("Card ID: "+ str(res)+" PASS: Green Light Activated")
+            green.value(1)
+            sleep(2)
+            green.value(0)

@@ -8,14 +8,9 @@
   </head>
 
   <body>
-    <p>
-        <label for="nom_badge">description :</label>
-      <input type="text" name="nom_badge"> 
-    </p>
 
       <?php 
       $codeBadge = $_GET['res'];
-      # $nom_badge = $_POST['nom_badge']
 
       $dbh = new PDO('mysql:dbname=test;host=localhost;charset=utf8', 'root', '');
 
@@ -32,6 +27,7 @@
       if ($danslaBase == false) {
         $res = $dbh->query("INSERT INTO codebadge1(code_badge) VALUES('$codeBadge')");
       }
+
 
       ?>
 
