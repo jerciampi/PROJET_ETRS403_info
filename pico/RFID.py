@@ -13,10 +13,15 @@ from picozero import pico_temp_sensor, pico_led
 import machine
 import rp2
 import sys
+from machine import Pin
+
 
 #Wifi de la borne D-link DAP-1360 stockée dans la salle A214
 ssid = 'wifirpi'
 password = '88E4VB1YQBI15TM4UCK9KP1LWQ'
+
+red = Pin(1, Pin.OUT)
+green = Pin(0, Pin.OUT)
 
 def connect():
     #Connect to WLAN
@@ -61,8 +66,18 @@ while True:
         res = "%s" % uidToString(uid)
         sleep(1)
 
-        url = 'http://193.48.125.182/Projet/PROJET_ETRS403_info/web/passage_badge.php?res='+res
+        url = 'http://193.48.125.182/Projet/RFID/PROJET_ETRS403_info/web/passage_badge.php?res='+res
         response = requests.get(url)
-        page = response.content
-        var = page[-14:-10]
+        page = response.text
+        var = page[-24:-20]
         print (var)
+        if var=="true":
+            print("Card ID: "+ str(res)+" PASS: Green Light Activated")
+            green.value(1)
+            sleep(2)
+            green.value(0)
+        else:
+            print("Card ID: "+ str(res)+" STOP: Red Light Activated")
+            red.value(1)
+            sleep(2)
+            red.value(0)
