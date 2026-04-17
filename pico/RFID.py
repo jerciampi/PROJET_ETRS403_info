@@ -58,7 +58,6 @@ print("")
 print("Placez une carte RFID pres du lecteur.")
 print("")
 while True:
-
     (stat, tag_type) = rc522.request(rc522.REQIDL)
 
     if stat == rc522.OK:
@@ -107,3 +106,10 @@ while True:
             green.value(1)
             sleep(2)
             green.value(0)
+        if rc522.select_tag(uid) == rc522.OK:
+            key = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
+            if rc522.auth(rc522.AUTHENT1A, 8, key, uid) == rc522.OK:
+                print(" - données : %s" % rc522.read(8))
+                rc522.stop_crypto1()
+            else:
+                print("Erreur de lecture")
