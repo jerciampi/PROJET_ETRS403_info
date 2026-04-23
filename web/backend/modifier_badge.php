@@ -1,10 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="utf-8">
-  <title>Backend : modifier un badge</title>
-  <link rel="stylesheet" href="">
+  <title>Action : Modifier un badge</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 
@@ -18,7 +17,7 @@
 
 $dbh = new PDO('mysql:dbname=test;host=localhost;charset=utf8', 'root', '');
 
-$id_badge = $_POST['id_balade'];
+$id_badge = $_POST['id_badge'];
 $result_actuel = $dbh->query("SELECT * FROM codebadge1 WHERE id_badge='$id_badge'");
 $badge = $result_actuel->fetch(PDO::FETCH_ASSOC);
 
@@ -34,5 +33,9 @@ echo "Le badge a bien été modifié dans la base  : <br>\n";
 echo '</p>'
 ?>
 
+<div class="retour-accueil">
+      <a href="page_web.php" class="btn-retour">Retour à l'accueil</a>
+  </div>
+  
 </body>
 </html>

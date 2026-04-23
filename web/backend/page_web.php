@@ -26,6 +26,10 @@
         <a href="modifier_badge_form.php" class="box">
             Modifier un badge
         </a>
+
+        <a href="voir_historique.php" class="box" style="border-color: #2196F3;">
+            Historique des passages
+        </a>
     </div>
 
 </body>

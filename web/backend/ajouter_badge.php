@@ -1,19 +1,22 @@
 <!doctype html>
 <html lang="fr">
 
+<!DOCTYPE html>
+<html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Backend : ajouter une balade</title>
-  <link rel="stylesheet" href="">
+  <title>Action : Ajouter un badge</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 
 
 
-
-
-
 <body>
+
+
+
+
 <?php 
 
 $codebadge = $_POST['code_badge'];
@@ -48,4 +51,9 @@ VALUES ('$codebadge', '$nom_badge', '$admin')");
 
 ?>
 
+<div class="retour-accueil">
+      <a href="page_web.php" class="btn-retour">Retour à l'accueil</a>
+  </div>
+  
 </body>
+</html>

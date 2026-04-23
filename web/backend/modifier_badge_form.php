@@ -1,10 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="utf-8">
-  <title>Backend : Modifier une balade - formulaire</title>
-  <link rel="stylesheet" href="">
+  <title>Modifier un badge</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 
@@ -16,10 +15,11 @@
 <body>
 
   <h1>Choisir le badge à modifier</h1>
-  
+  <div class="card">
   <form method="POST" action="modifier_badge.php" enctype="multipart/form-data">
 
-  <p><label for="id_badge">Balade a modifier :</label>
+  <div class="form-group">
+    <label for="id_badge">Badge a modifier :</label>
   <select name="id_badge">
   <option value=''>Choisissez le badge</option>
     <?php
@@ -33,25 +33,25 @@
     }
     ?>
 </select>
-<p>
+</div>
   
-<h1>Modifier le badge choisi</h1>
-  <p>
+<h2>Modifier le badge choisi</h2>
+<p style="font-size: 0.9em; color: #666;">(Laissez vide si vous ne voulez pas modifier la valeur)</p>
+  <div class="form-group">
     <label for="code_badge">Code du badge :</label>
 	<input type="text" name="code_badge">
-  </p>
+</div>
 
-  <p>
+  <div class="form-group">
     <label for="nom_badge">Nom du badge :</label>
 	<input type="text" name="nom_badge">
-  </p>
+</div>
 
-  
-  <p>
+
 	<input type="submit" value="Modifier le badge">
-  </p>
 
 </form>
+</div>
 
 <div class="retour-accueil">
     <a href="page_web.php" class="btn-retour">Retour à l'accueil</a>
@@ -60,3 +60,4 @@
   
   
 </body>
+</html>
