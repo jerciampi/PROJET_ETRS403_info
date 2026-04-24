@@ -14,7 +14,7 @@
 
 <body>
 
-  <h1>Ajouter une balade</h1>
+  <h1>Ajouter un badge</h1>
 <div class="card">
       <form method="POST" action="ajouter_badge.php">
       
